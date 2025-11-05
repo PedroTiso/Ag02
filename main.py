@@ -1,23 +1,61 @@
-#Importando as bibliotecas necessarias
+# Importação das bibliotecas
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 
-#Lendo o DataFrame e imprimindo as 5 primeiras linhas
+# Leitura do arquivo CSV
 df = pd.read_csv("conjunto_dados/dados.csv")
 print(df.head())
 
-#Dicionario mapeado conforme pede o enunciado
-# Criando uma nova coluna aplicando o mapeamento
-species_map = {"Iris-setosa": 1, "Iris-versicolor": 2, "Iris-virginica": 3}
+# Mapeamento das espécies (conforme enunciado)
+species_map = {
+    "Iris-setosa": 1,
+    "Iris-versicolor": 2,
+    "Iris-virginica": 3
+}
 df["species_num"] = df["species"].replace(species_map)
 
-#Conferindo a nova coluna
+# Conferências
+print("\nPrévia com a nova coluna 'species_num':")
 print(df.head())
 
-#Mostrando 50 amostras de cada classe
+print("\nContagem por classe:")
 print(df["species_num"].value_counts().sort_index())
 
-#Mostrando os tipos das colunas
+print("\nTipos de dados:")
 print(df.dtypes)
 
-#Aqui, vamos diver em treino e teste, conforme manda o enunciado
+#Definindo o que sera entrada e o que sera saida
+X = df[["sepal_length_cm", "sepal_width_cm", "petal_length_cm", "petal_width_cm"]]
+Y = df["species_num"]
+
+#Divisao de Treino e Teste
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X,Y,
+    test_size=0.2,
+    shuffle=True,
+    random_state=42,
+    stratify=Y
+)
+
+#Verificando os tamanhos
+print("\nShapes:")
+print("X_train:", X_train.shape, "| y_train:", Y_train.shape)
+print("X_test :", X_test.shape,  "| y_test :", Y_test.shape)
+
+#Criando a instancia do modelo
+modelo = KNeighborsClassifier(n_neighbors=5)
+
+#Parte Responsável por treinar o modelo
+modelo.fit(X_train, Y_train)
+
+#Testando o modelo com 30 flores novas
+y_pred = modelo.predict(X_test)
+
+print(y_pred[:10])
+
+print(Y_test[:10].values)
+
+
+
