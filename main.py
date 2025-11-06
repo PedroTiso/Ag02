@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # Leitura do arquivo CSV
 df = pd.read_csv("conjunto_dados/dados.csv")
@@ -57,5 +58,16 @@ print(y_pred[:10])
 
 print(Y_test[:10].values)
 
+#Porcentagem de acertos no conjunto de teste
+acertos = accuracy_score(Y_test, y_pred)
+print(f"Porcentagem de acertos: {acertos:.3f}")
 
+#Tabelas de acertos/erros por classe
+confusao = confusion_matrix(Y_test, y_pred, labels=[1,2,3])
+print("\nMatriz de confusão (linhas = verdade, colunas = predição):")
+print(confusao)
 
+#Relatorio de classificacao
+nomes = ["setosa", "versicolor", "virginica"]
+print("\nRelatorio de Classificacao")
+print(classification_report(Y_test, y_pred, target_names=nomes, digits=3))
