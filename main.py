@@ -71,3 +71,26 @@ print(confusao)
 nomes = ["setosa", "versicolor", "virginica"]
 print("\nRelatorio de Classificacao")
 print(classification_report(Y_test, y_pred, target_names=nomes, digits=3))
+
+
+print("\n--- Classificação de nova amostra ---")
+# Coleta dos dados do usuário
+comprimento_sepala = float(input("Digite o comprimento da sépala (cm): "))
+largura_sepala     = float(input("Digite a largura da sépala (cm): "))
+comprimento_petala = float(input("Digite o comprimento da pétala (cm): "))
+largura_petala     = float(input("Digite a largura da pétala (cm): "))
+
+
+# Criando a amostra nova como DataFrame, com os mesmos nomes de coluna de X
+amostra_nova = pd.DataFrame( 
+    [[comprimento_sepala, largura_sepala, comprimento_petala, largura_petala]], 
+    columns=X.columns
+) 
+
+# Realizando a predição
+predicao = modelo.predict(amostra_nova)[0]
+
+# Mapeando o número para o nome da espécie
+mapa_especies = {1: "Iris-setosa", 2: "Iris-versicolor", 3: "Iris-virginica"}
+
+print(f"\nO modelo classificou a flor como: {mapa_especies[predicao]}")
