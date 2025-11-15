@@ -1,6 +1,5 @@
 # Importação das bibliotecas
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
@@ -75,15 +74,15 @@ print(classification_report(Y_test, y_pred, target_names=nomes, digits=3))
 
 print("\n--- Classificação de nova amostra ---")
 # Coleta dos dados do usuário
-comprimento_sepala = float(input("Digite o comprimento da sépala (cm): "))
-largura_sepala     = float(input("Digite a largura da sépala (cm): "))
-comprimento_petala = float(input("Digite o comprimento da pétala (cm): "))
-largura_petala     = float(input("Digite a largura da pétala (cm): "))
+sepal_length_cm = float(input("Digite o comprimento da sépala (cm): "))
+sepal_width_cm     = float(input("Digite a largura da sépala (cm): "))
+petal_length_cm = float(input("Digite o comprimento da pétala (cm): "))
+petal_width_cm     = float(input("Digite a largura da pétala (cm): "))
 
 
 # Criando a amostra nova como DataFrame, com os mesmos nomes de coluna de X
 amostra_nova = pd.DataFrame( 
-    [[comprimento_sepala, largura_sepala, comprimento_petala, largura_petala]], 
+    [[sepal_length_cm, sepal_width_cm, petal_length_cm, petal_width_cm]], 
     columns=X.columns
 ) 
 

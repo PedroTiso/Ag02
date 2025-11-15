@@ -44,9 +44,8 @@ Cada flor é descrita por quatro atributos numéricos:
 ## ⚙️ Tecnologias Utilizadas
 
 - 🐍 **Python 3**
-- 📚 **Pandas / NumPy** — manipulação e análise de dados  
+- 📚 **Pandas** — manipulação e análise de dados  
 - 🤖 **Scikit-learn** — modelagem, treino e métricas  
-- 💾 **Joblib** — salvamento do modelo final  
 
 ---
 
@@ -63,9 +62,6 @@ Cada flor é descrita por quatro atributos numéricos:
 
 4. **Avaliação e métricas**  
    → Acurácia, matriz de confusão e relatório de classificação  
-
-5. **Exportação**  
-   → Salvamento do modelo treinado (`iris_knn_pipeline.joblib`)  
 
 ---
 
@@ -86,8 +82,8 @@ O modelo apresentou **desempenho perfeito** no conjunto de teste, confirmando a 
 
 ```bash
 # 1️⃣ Clonar o repositório
-git clone https://github.com/SEU_USUARIO/iris-classificador.git
-cd iris-classificador
+git clone https://github.com/PedroTiso/Ag02
+cd Ag02
 
 # 2️⃣ Instalar as dependências
 pip install -r requirements.txt
